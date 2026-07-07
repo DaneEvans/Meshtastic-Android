@@ -150,7 +150,8 @@ private fun rememberTelemetricFeatures(
                 icon = LogsType.NEIGHBOR_INFO.icon,
                 requestAction = { NodeMenuAction.RequestNeighborInfo(it) },
                 logsType = LogsType.NEIGHBOR_INFO,
-                isVisible = { it.capabilities.canRequestNeighborInfo },
+                // fixme. 
+                isVisible = { it.capabilities.canRequestNeighborInfo || it.hasSeenNeighborInfo || true },
                 cooldownTimestamp = lastRequestNeighborsTime,
                 cooldownDuration = REQUEST_NEIGHBORS_COOL_DOWN_TIME_MS,
             ),

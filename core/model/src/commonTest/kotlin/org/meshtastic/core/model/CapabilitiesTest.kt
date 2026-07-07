@@ -32,9 +32,11 @@ class CapabilitiesTest {
     }
 
     @Test
-    fun canRequestNeighborInfo_is_currently_disabled() {
-        assertFalse(caps("2.7.14").canRequestNeighborInfo)
-        assertFalse(caps("3.0.0").canRequestNeighborInfo)
+    fun canRequestNeighborInfo_requires_V2_6_9() {
+        assertFalse(caps("2.6.8").canRequestNeighborInfo)
+        assertTrue(caps("2.6.9").canRequestNeighborInfo)
+        assertTrue(caps("2.7.14").canRequestNeighborInfo)
+        assertTrue(caps("3.0.0").canRequestNeighborInfo)
     }
 
     @Test

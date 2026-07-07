@@ -49,6 +49,11 @@ class NeighborInfoHandlerImpl(
             Logger.d { "Stored last neighbor info from connected radio" }
         }
 
+        // Mark that we've seen a neighbor info packet from this node (enables neighbor-info requests without metadata)
+        nodeManager.updateNode(from) { node ->
+            node.copy(hasSeenNeighborInfo = true)
+        }
+
         // Format for UI response
         val requestId = packet.decoded?.request_id ?: 0
 

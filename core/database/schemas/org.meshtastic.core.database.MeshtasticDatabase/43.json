@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 43,
-    "identityHash": "c58b8f2f228a2a98ef9faf320b388373",
+    "identityHash": "fdeb8c49f70f919cdbc2a78339682b75",
     "entities": [
       {
         "tableName": "my_node",
@@ -86,7 +86,7 @@
       },
       {
         "tableName": "nodes",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`num` INTEGER NOT NULL, `user` BLOB NOT NULL, `long_name` TEXT, `short_name` TEXT, `position` BLOB NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `snr` REAL NOT NULL, `rssi` INTEGER NOT NULL, `last_heard` INTEGER NOT NULL, `device_metrics` BLOB NOT NULL, `channel` INTEGER NOT NULL, `via_mqtt` INTEGER NOT NULL, `hops_away` INTEGER NOT NULL, `is_favorite` INTEGER NOT NULL, `is_ignored` INTEGER NOT NULL DEFAULT 0, `is_muted` INTEGER NOT NULL DEFAULT 0, `environment_metrics` BLOB NOT NULL, `power_metrics` BLOB NOT NULL, `air_quality_metrics` BLOB NOT NULL DEFAULT x'', `paxcounter` BLOB NOT NULL, `public_key` BLOB, `notes` TEXT NOT NULL DEFAULT '', `manually_verified` INTEGER NOT NULL DEFAULT 0, `node_status` TEXT, `last_transport` INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(`num`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`num` INTEGER NOT NULL, `user` BLOB NOT NULL, `long_name` TEXT, `short_name` TEXT, `position` BLOB NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `snr` REAL NOT NULL, `rssi` INTEGER NOT NULL, `last_heard` INTEGER NOT NULL, `device_metrics` BLOB NOT NULL, `channel` INTEGER NOT NULL, `via_mqtt` INTEGER NOT NULL, `hops_away` INTEGER NOT NULL, `is_favorite` INTEGER NOT NULL, `is_ignored` INTEGER NOT NULL DEFAULT 0, `is_muted` INTEGER NOT NULL DEFAULT 0, `environment_metrics` BLOB NOT NULL, `power_metrics` BLOB NOT NULL, `air_quality_metrics` BLOB NOT NULL DEFAULT x'', `paxcounter` BLOB NOT NULL, `public_key` BLOB, `notes` TEXT NOT NULL DEFAULT '', `manually_verified` INTEGER NOT NULL DEFAULT 0, `node_status` TEXT, `last_transport` INTEGER NOT NULL DEFAULT 0, `has_seen_neighbor_info` INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(`num`))",
         "fields": [
           {
             "fieldPath": "num",
@@ -242,6 +242,13 @@
           {
             "fieldPath": "lastTransport",
             "columnName": "last_transport",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "hasSeenNeighborInfo",
+            "columnName": "has_seen_neighbor_info",
             "affinity": "INTEGER",
             "notNull": true,
             "defaultValue": "0"
@@ -1575,7 +1582,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c58b8f2f228a2a98ef9faf320b388373')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fdeb8c49f70f919cdbc2a78339682b75')"
     ]
   }
 }

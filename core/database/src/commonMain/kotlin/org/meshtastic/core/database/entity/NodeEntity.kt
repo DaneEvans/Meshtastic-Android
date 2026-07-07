@@ -67,6 +67,7 @@ data class NodeWithRelations(
         lastTransport = node.lastTransport,
         metadata = metadata?.proto,
         manuallyVerified = node.manuallyVerified,
+        hasSeenNeighborInfo = node.hasSeenNeighborInfo,
     )
 
     fun toEntity() = with(node) {
@@ -93,6 +94,7 @@ data class NodeWithRelations(
             manuallyVerified = manuallyVerified,
             nodeStatus = nodeStatus,
             lastTransport = lastTransport,
+            hasSeenNeighborInfo = hasSeenNeighborInfo,
         )
     }
 }
@@ -149,6 +151,8 @@ data class NodeEntity(
     @ColumnInfo(name = "node_status") var nodeStatus: String? = null,
     /** The transport mechanism this node was last heard over (see [MeshPacket.TransportMechanism]). */
     @ColumnInfo(name = "last_transport", defaultValue = "0") var lastTransport: Int = 0,
+    /** Tracks whether we've ever received a neighbor info packet from this node. */
+    @ColumnInfo(name = "has_seen_neighbor_info", defaultValue = "0") var hasSeenNeighborInfo: Boolean = false,
 ) {
     val deviceMetrics: org.meshtastic.proto.DeviceMetrics?
         get() = deviceTelemetry.device_metrics
