@@ -53,7 +53,4 @@ interface ServiceStateWriter {
 
     /** Sets the traceroute response. */
     fun setTracerouteResponse(value: TracerouteResponse?)
-
-    /** Sets the neighbor info response. */
-    fun setNeighborInfoResponse(value: String?)
 }

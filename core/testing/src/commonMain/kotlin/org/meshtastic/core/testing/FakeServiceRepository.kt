@@ -87,17 +87,6 @@ class FakeServiceRepository : ServiceRepository {
         _tracerouteResponse.value = null
     }
 
-    private val _neighborInfoResponse = MutableStateFlow<String?>(null)
-    override val neighborInfoResponse: StateFlow<String?> = _neighborInfoResponse
-
-    override fun setNeighborInfoResponse(value: String?) {
-        _neighborInfoResponse.value = value
-    }
-
-    override fun clearNeighborInfoResponse() {
-        _neighborInfoResponse.value = null
-    }
-
     private val _lockdownState = MutableStateFlow<LockdownState>(LockdownState.None)
     override val lockdownState: StateFlow<LockdownState> = _lockdownState
 

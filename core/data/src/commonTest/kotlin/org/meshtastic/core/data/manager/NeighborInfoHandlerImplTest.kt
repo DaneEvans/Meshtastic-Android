@@ -81,7 +81,7 @@ class NeighborInfoHandlerImplTest {
     }
 
     @Test
-    fun `handleNeighborInfo sets response on serviceRepository`() {
+    fun `handleNeighborInfo marks node as having seen neighbor info`() {
         val ni =
             NeighborInfo(
                 node_id = myNodeNum,
@@ -95,7 +95,8 @@ class NeighborInfoHandlerImplTest {
 
         handler.handleNeighborInfo(packet)
 
-        verify { serviceRepository.setNeighborInfoResponse(any()) }
+        // Handler marks node as having seen neighbor info for UI enable
+        verify { nodeManager.updateNode(myNodeNum, any()) }
     }
 
     @Test
@@ -106,7 +107,7 @@ class NeighborInfoHandlerImplTest {
     }
 
     @Test
-    fun `recordStartTime and handleNeighborInfo includes duration`() {
+    fun `recordStartTime and handleNeighborInfo works with timing`() {
         val requestId = 42
         val ni = NeighborInfo(node_id = myNodeNum, neighbors = listOf(Neighbor(node_id = 100, snr = 1.0f)))
         val packet = createPacketWithNeighborInfo(from = myNodeNum, ni = ni, requestId = requestId)
@@ -117,7 +118,8 @@ class NeighborInfoHandlerImplTest {
         handler.recordStartTime(requestId)
         handler.handleNeighborInfo(packet)
 
-        verify { serviceRepository.setNeighborInfoResponse(any()) }
+        // Handler should have stored the lastNeighborInfo from the packet
+        assertEquals(ni, handler.lastNeighborInfo)
     }
 
     private fun createPacketWithNeighborInfo(from: Int, ni: NeighborInfo, requestId: Int = 0): MeshPacket {

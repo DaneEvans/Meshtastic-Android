@@ -50,9 +50,7 @@ class NeighborInfoHandlerImpl(
         }
 
         // Mark that we've seen a neighbor info packet from this node (enables neighbor-info requests without metadata)
-        nodeManager.updateNode(from) { node ->
-            node.copy(hasSeenNeighborInfo = true)
-        }
+        nodeManager.updateNode(from) { node -> node.copy(hasSeenNeighborInfo = true) }
 
         // Format for UI response
         val requestId = packet.decoded?.request_id ?: 0
@@ -63,12 +61,5 @@ class NeighborInfoHandlerImpl(
                 val name = "${user.long_name} (${user.short_name})"
                 "• $name (SNR: ${n.snr})"
             }
-
-        val fromUser = nodeRepository.getUser(from)
-        val formatted = "Neighbors of ${fromUser.long_name}:\n$neighbors"
-
-        val responseText = requestTimer.appendDuration(requestId, formatted, "Neighbor info")
-
-        serviceStateWriter.setNeighborInfoResponse(responseText)
     }
 }

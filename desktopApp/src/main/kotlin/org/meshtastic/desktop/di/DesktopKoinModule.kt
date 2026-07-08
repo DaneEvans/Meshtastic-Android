@@ -50,7 +50,6 @@ import org.meshtastic.core.repository.MeshNotificationManager
 import org.meshtastic.core.repository.MeshWorkerManager
 import org.meshtastic.core.repository.MessageQueue
 import org.meshtastic.core.repository.MessagingController
-import org.meshtastic.core.repository.NeighborInfoResponseProvider
 import org.meshtastic.core.repository.NodeController
 import org.meshtastic.core.repository.NotificationManager
 import org.meshtastic.core.repository.PlatformAnalytics
@@ -168,7 +167,6 @@ private fun desktopPlatformStubsModule() = module {
     single<ServiceRepository> { ServiceRepositoryImpl() }
     single<ConnectionStateProvider> { get<ServiceRepository>() }
     single<TracerouteResponseProvider> { get<ServiceRepository>() }
-    single<NeighborInfoResponseProvider> { get<ServiceRepository>() }
     single<ServiceStateWriter> { get<ServiceRepository>() }
     single<RadioTransportFactory> {
         DesktopRadioTransportFactory(

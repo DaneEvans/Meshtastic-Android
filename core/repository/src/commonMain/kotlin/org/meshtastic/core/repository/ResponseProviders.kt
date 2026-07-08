@@ -32,16 +32,3 @@ interface TracerouteResponseProvider {
     /** Clears the current traceroute response (consumed by UI after display). */
     fun clearTracerouteResponse()
 }
-
-/**
- * Read-only provider of neighbor info response state.
- *
- * Inject in ViewModels that display neighbor info results.
- */
-interface NeighborInfoResponseProvider {
-    /** The most recent neighbor info response (formatted string), or null. */
-    val neighborInfoResponse: StateFlow<String?>
-
-    /** Clears the current neighbor info response. */
-    fun clearNeighborInfoResponse()
-}

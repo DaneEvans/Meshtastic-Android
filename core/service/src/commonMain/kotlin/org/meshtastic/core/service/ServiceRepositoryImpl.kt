@@ -106,18 +106,6 @@ open class ServiceRepositoryImpl : ServiceRepository {
         setTracerouteResponse(null)
     }
 
-    private val _neighborInfoResponse = MutableStateFlow<String?>(null)
-    override val neighborInfoResponse: StateFlow<String?>
-        get() = _neighborInfoResponse
-
-    override fun setNeighborInfoResponse(value: String?) {
-        _neighborInfoResponse.value = value
-    }
-
-    override fun clearNeighborInfoResponse() {
-        setNeighborInfoResponse(null)
-    }
-
     private val _lockdownState = MutableStateFlow<LockdownState>(LockdownState.None)
     override val lockdownState: StateFlow<LockdownState>
         get() = _lockdownState

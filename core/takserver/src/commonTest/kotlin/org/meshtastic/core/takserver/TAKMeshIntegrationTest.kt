@@ -199,12 +199,6 @@ class TAKMeshIntegrationTest {
 
         override fun clearTracerouteResponse() {}
 
-        override val neighborInfoResponse: StateFlow<String?> = MutableStateFlow(null)
-
-        override fun setNeighborInfoResponse(value: String?) {}
-
-        override fun clearNeighborInfoResponse() {}
-
         override val lockdownState: StateFlow<LockdownState> = MutableStateFlow(LockdownState.None)
 
         override fun setLockdownState(state: LockdownState) {}

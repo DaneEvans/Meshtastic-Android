@@ -44,7 +44,6 @@ import org.meshtastic.proto.MeshPacket
 interface ServiceRepository :
     ConnectionStateProvider,
     TracerouteResponseProvider,
-    NeighborInfoResponseProvider,
     ServiceStateWriter {
     /**
      * Canonical app-level connection state.
@@ -152,19 +151,6 @@ interface ServiceRepository :
 
     /** Clears the current traceroute response. */
     override fun clearTracerouteResponse()
-
-    /** Reactive flow of the most recent neighbor info response (formatted string). */
-    override val neighborInfoResponse: StateFlow<String?>
-
-    /**
-     * Sets the neighbor info response.
-     *
-     * @param value The human-readable neighbor info string.
-     */
-    override fun setNeighborInfoResponse(value: String?)
-
-    /** Clears the current neighbor info response. */
-    override fun clearNeighborInfoResponse()
 
     companion object {
         /**

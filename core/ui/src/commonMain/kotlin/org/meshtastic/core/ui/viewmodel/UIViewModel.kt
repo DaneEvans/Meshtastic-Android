@@ -316,12 +316,6 @@ class UIViewModel(
         serviceRepository.clearTracerouteResponse()
     }
 
-    val neighborInfoResponse: StateFlow<String?> = serviceRepository.neighborInfoResponse
-
-    fun clearNeighborInfoResponse() {
-        serviceRepository.clearNeighborInfoResponse()
-    }
-
     val appIntroCompleted: StateFlow<Boolean> = uiPrefs.appIntroCompleted
 
     fun onAppIntroCompleted() {
