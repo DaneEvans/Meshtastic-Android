@@ -69,6 +69,7 @@ data class NodeWithRelations(
         metadata = metadata?.proto,
         manuallyVerified = node.manuallyVerified,
         signsPackets = node.signsPackets,
+        hasSeenNeighborInfo = node.hasSeenNeighborInfo,
     )
 
     fun toEntity() = with(node) {
@@ -97,6 +98,7 @@ data class NodeWithRelations(
             nodeStatus = nodeStatus,
             lastTransport = lastTransport,
             signsPackets = signsPackets,
+            hasSeenNeighborInfo = hasSeenNeighborInfo,
         )
     }
 }
@@ -156,6 +158,8 @@ data class NodeEntity(
     @ColumnInfo(name = "last_transport", defaultValue = "0") var lastTransport: Int = 0,
     /** True when this node signs its broadcasts via XEdDSA (NodeInfo.has_xeddsa_signed). */
     @ColumnInfo(name = "has_xeddsa_signed", defaultValue = "0") var signsPackets: Boolean = false,
+    /** Tracks whether we've ever received a neighbor info packet from this node. */
+    @ColumnInfo(name = "has_seen_neighbor_info", defaultValue = "0") var hasSeenNeighborInfo: Boolean = false,
 ) {
     val deviceMetrics: org.meshtastic.proto.DeviceMetrics?
         get() = deviceTelemetry.device_metrics

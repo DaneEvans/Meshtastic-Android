@@ -34,8 +34,8 @@ data class Capabilities(val firmwareVersion: String?, internal val forceEnableAl
     /** Ability to mute notifications from specific nodes via admin messages. */
     val canMuteNode = atLeast(V2_7_18)
 
-    /** Ability to request neighbor information from other nodes. Gated to [UNRELEASED] until working reliably. */
-    val canRequestNeighborInfo = atLeast(UNRELEASED)
+/** Ability to request neighbor information from other nodes. Gated to v2.6.9+. */
+      val canRequestNeighborInfo = atLeast(V2_7_12)
 
     /** Ability to send verified shared contacts. Supported since firmware v2.7.12. */
     val canSendVerifiedContacts = atLeast(V2_7_12)
@@ -96,6 +96,5 @@ data class Capabilities(val firmwareVersion: String?, internal val forceEnableAl
         private val V2_7_18 = DeviceVersion("2.7.18")
         private val V2_7_19 = DeviceVersion("2.7.19")
         private val V2_8_0 = DeviceVersion("2.8.0")
-        private val UNRELEASED = DeviceVersion("9.9.9")
     }
 }

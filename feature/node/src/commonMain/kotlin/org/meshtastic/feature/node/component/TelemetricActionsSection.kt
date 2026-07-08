@@ -162,7 +162,7 @@ private fun rememberTelemetricFeatures(
             icon = LogsType.NEIGHBOR_INFO.icon,
             requestAction = { NodeMenuAction.RequestNeighborInfo(it) },
             logsType = LogsType.NEIGHBOR_INFO,
-            isVisible = { it.capabilities.canRequestNeighborInfo },
+            isVisible = { it.capabilities.canRequestNeighborInfo || it.hasSeenNeighborInfo }, // capabilities is only useful if we have the metadata for firmware version, but hasSeenNeighborInfo will limit to only ones that have the module
             cooldownTimestamp = lastRequestNeighborsTime,
             cooldownDuration = REQUEST_NEIGHBORS_COOL_DOWN_TIME_MS,
         ),

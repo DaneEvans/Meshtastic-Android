@@ -71,6 +71,8 @@ data class Node(
     val nodeStatus: String? = null,
     /** The transport mechanism this node was last heard over (see [MeshPacket.TransportMechanism]). */
     val lastTransport: Int = 0,
+    /** Whether we have observed a neighbor info packet from this node. */
+    val hasSeenNeighborInfo: Boolean = false,
 ) {
     val capabilities: Capabilities by lazy { Capabilities(metadata?.firmware_version) }
 
